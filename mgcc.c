@@ -44,8 +44,11 @@ int main(int argc, char* argv[]) {
 	char *socket = getenv("MGCC_SOCKET");
 	char *_donor_available = getenv("MGCC_DONOR_AVAILABLE");
 	bool donor_available = _donor_available ? atoi(_donor_available) : false;
+	char *_timeout = getenv("MGCC_TIMEOUT");
+	int timeout = _timeout ? atoi(_timeout) : 10;
 
 	conn = mysql_init(NULL);
+	mysql_options(conn, MYSQL_OPT_CONNECT_TIMEOUT, &timeout);
 	if (!mysql_real_connect(conn,
 				socket == NULL ? "localhost" : NULL,
 				username, password,
