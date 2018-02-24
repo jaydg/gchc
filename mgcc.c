@@ -41,6 +41,8 @@ void print_status(int status, const char *message) {
 int main(int argc, char* argv[]) {
 	char *username = getenv("MGCC_USERNAME");
 	char *password = getenv("MGCC_PASSWORD");
+	char *host = getenv("MGCC_HOST");
+	char *port = getenv("MGCC_PORT");
 	char *socket = getenv("MGCC_SOCKET");
 	char *_donor_available = getenv("MGCC_DONOR_AVAILABLE");
 	bool donor_available = _donor_available ? atoi(_donor_available) : false;
@@ -49,12 +51,9 @@ int main(int argc, char* argv[]) {
 
 	conn = mysql_init(NULL);
 	mysql_options(conn, MYSQL_OPT_CONNECT_TIMEOUT, &timeout);
-	if (!mysql_real_connect(conn,
-				socket == NULL ? "localhost" : NULL,
-				username, password,
-				NULL,
-				socket == NULL ? 3306 : 0,
-				socket, 0)
+
+	if (!mysql_real_connect(conn, host, username, password, NULL,
+				port != NULL ? atoi(port) : 3306, socket, 0)
 	) {
 		print_status(S500_BOO_BOO, mysql_error(conn));
 	}
