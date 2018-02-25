@@ -39,14 +39,14 @@ void print_status(int status, const char *message) {
 }
 
 int main(int argc, char* argv[]) {
-	char *username = getenv("MGCC_USERNAME");
-	char *password = getenv("MGCC_PASSWORD");
-	char *host = getenv("MGCC_HOST");
-	char *port = getenv("MGCC_PORT");
-	char *socket = getenv("MGCC_SOCKET");
-	char *_donor_available = getenv("MGCC_DONOR_AVAILABLE");
+	char *username = getenv("GCHC_USERNAME");
+	char *password = getenv("GCHC_PASSWORD");
+	char *host = getenv("GCHC_HOST");
+	char *port = getenv("GCHC_PORT");
+	char *socket = getenv("GCHC_SOCKET");
+	char *_donor_available = getenv("GCHC_DONOR_AVAILABLE");
 	bool donor_available = _donor_available ? atoi(_donor_available) : false;
-	char *_timeout = getenv("MGCC_TIMEOUT");
+	char *_timeout = getenv("GCHC_TIMEOUT");
 	int timeout = _timeout ? atoi(_timeout) : 10;
 
 	conn = mysql_init(NULL);
