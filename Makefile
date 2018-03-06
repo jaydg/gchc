@@ -5,7 +5,7 @@ LDFLAGS	+= `mysql_config --libs`
 
 all: gchc
 
-gchc:
+gchc: gchc.c
 	$(CC) -O2 $(CFLAGS) $(LDFLAGS) -o $@ $@.c
 
 clean:
