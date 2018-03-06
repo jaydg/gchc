@@ -28,7 +28,7 @@ MYSQL_RES *res = NULL;
 
 
 void print_status(int status, const char *message) {
-	int len = message ? strlen(message) : 0; 
+	int len = message ? strlen(message) : 0;
 	printf(header, status, status_msgs[status], len, message);
 
 	if (res) mysql_free_result(res);
@@ -67,9 +67,9 @@ int main(int argc, char* argv[]) {
 
 	if (!row) {
 		print_status(S500_BOO_BOO, "Node is not clustered.");
-	} else if (row[1] == "4") {
+	} else if (atoi(row[1]) == 4) {
 		print_status(S200_OK, "Galera Cluster Node is synced.");
-	} else if (row[1] == "2" && donor_available) {
+	} else if (atoi(row[1]) == 2 && donor_available) {
 		print_status(S200_OK, "Galera Cluster Node is available as donor.");
 	} else {
 		print_status(S503_SERVICE_UNAVAILABLE, "Galera Cluster Node is not synced.");
