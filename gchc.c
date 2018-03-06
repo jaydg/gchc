@@ -10,6 +10,12 @@ enum stati {
 	S503_SERVICE_UNAVAILABLE
 };
 
+const int status_codes[] = {
+	200,
+	500,
+	503
+};
+
 const char* status_msgs[] = {
 	"OK",
 	"Internal Server Error",
@@ -29,7 +35,7 @@ MYSQL_RES *res = NULL;
 
 void print_status(int status, const char *message) {
 	int len = message ? strlen(message) : 0;
-	printf(header, status, status_msgs[status], len, message);
+	printf(header, status_codes[status], status_msgs[status], len, message);
 
 	if (res) mysql_free_result(res);
 	if (conn) mysql_close(conn);
