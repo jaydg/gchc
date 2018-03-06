@@ -1,4 +1,4 @@
-CFLAGS	+= `mysql_config --cflags`
+CFLAGS	+= `mysql_config --cflags` -Wall -Wextra
 LDFLAGS	+= `mysql_config --libs`
 
 .phony: clean
