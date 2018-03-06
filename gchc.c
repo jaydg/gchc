@@ -38,7 +38,7 @@ void print_status(int status, const char *message) {
 	exit(status);
 }
 
-int main(int argc, char* argv[]) {
+int main() {
 	char *username = getenv("GCHC_USERNAME");
 	char *password = getenv("GCHC_PASSWORD");
 	char *host = getenv("GCHC_HOST");
